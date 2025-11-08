@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customs Payment Form</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    overflow: hidden;
+  }
+
+  /* Fullscreen background video */
+  #bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    filter: brightness(0.7);
+  }
+
+  /* Light semi-transparent overlay */
+  #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(135, 206, 235, 0.2); /* sky blue tint */
+    z-index: -1;
+  }
+
+  /* Floating form panel */
+  .form-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  }
+
+  h1 {
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: #0033a0;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .payment-info p {
+    margin: 0.3rem 0;
+    font-size: 0.85rem;
+    color: #000;
+  }
+
+  label {
+    display: block;
+    margin: 0.4rem 0 0.2rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+
+  button {
+    width: 100%;
+    background: #0033a0;
+    color: #fff;
+    padding: 0.7rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  button:hover {
+    background: #002070;
+  }
+
+  .note {
+    font-size: 0.75rem;
+    color: #555;
+    margin-top: 0.6rem;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Replace this video tag -->
+<!--
+<video autoplay muted loop id="bg-video">
+  <source src="https://media.giphy.com/media/L3j1r0hfGbU4q/giphy.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+-->
+
+<!-- With this GIF image -->
+<img src="https://magnetic-ag.com/wp-content/uploads/2021/08/container.gif" 
+     id="bg-video" 
+     alt="Customs Port" 
+     style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;">
+
+  <div id="overlay"></div>
+
+  <!-- Floating form -->
+  <div class="form-panel">
+    <h1>✈ Customs Payment</h1>
+
+    <div class="payment-info">
+      <p><strong>Form:</strong> Customs Declaration Form</p>
+      <p><strong>Amount Due:</strong> $<span id="random-amount"></span></p>
+      <p><strong>Reference Number:</strong> <span id="ref-number"></span></p>
+    </div>
+
+    <form id="payment-form">
+      <label for="card-name">Cardholder Name</label>
+      <input type="text" id="card-name" placeholder="John Doe" required>
+
+      <label for="card-number">Card Number</label>
+      <input type="text" id="card-number" placeholder="4242 4242 4242 4242" required>
+
+      <label for="expiry">Expiry Date</label>
+      <input type="text" id="expiry" placeholder="MM/YY" required>
+
+      <label for="cvc">CVC</label>
+      <input type="text" id="cvc" placeholder="123" required>
+
+      <button type="submit">Submit Payment</button>
+    </form>
+
+    <p class="note">Your official form will be sent to jasdhillon87@hotmail.com after prompt payment</p>
+  </div>
+
+<script>
+  // Random amount and reference number
+  const amount = (Math.random() * 1000 + 100).toFixed(2);
+  document.getElementById("random-amount").textContent = amount;
+
+  const ref = 'CBP' + Math.floor(Math.random() * 1000000);
+  document.getElementById("ref-number").textContent = ref;
+
+  // Prevent actual form submission
+  document.getElementById("payment-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    alert("Payment submitted successfully (simulation).");
+  });
+</script>
+
+</body>
+  </html>
